@@ -3,11 +3,11 @@ import { computed } from "vue";
 
 const props = defineProps({
   seats: { type: Array, default: () => [] },
-  selectedSeq: { type: Number, default: null },  // 可選：綠色選取用
-  onSelect: { type: Function, default: () => {} } // 點格子事件
+  selectedSeq: { type: Number, default: null }, 
+  onSelect: { type: Function, default: () => {} } 
 });
 
-// 依樓層分組並排序每層的 seatNo
+// Group by floor and sort each floor's seatNo
 const byFloor = computed(() => {
   const map = new Map();
   for (const s of props.seats) {
@@ -19,9 +19,9 @@ const byFloor = computed(() => {
 });
 
 const seatClass = (s) => {
-  if (props.selectedSeq === s.floorSeatSeq) return "seat chosen"; // 綠
-  if (!s.empId) return "seat empty";  // 灰
-  return "seat occupied";             // 紅
+  if (props.selectedSeq === s.floorSeatSeq) return "seat chosen"; // Green
+  if (!s.empId) return "seat empty";  // Grey
+  return "seat occupied";             // Red
 };
 
 const seatLabel = (s) =>
@@ -29,17 +29,10 @@ const seatLabel = (s) =>
 </script>
 
 <template>
-  <div class="legend">
-    <span class="chip empty"></span> 空位
-    <span class="chip occupied"></span> 已佔用
-    <span class="chip chosen"></span> 請選擇
-  </div>
-
   <div class="floors">
     <div v-for="[floor, arr] in byFloor" :key="floor" class="floor">
       <div class="floor-title">{{ floor }} 樓</div>
 
-      <!-- 固定 4 欄的排版（和題目畫面一致） -->
       <div class="grid">
         <button
           v-for="s in arr"
@@ -52,6 +45,12 @@ const seatLabel = (s) =>
           <div class="row2" v-if="s.empId">【員編:{{ s.empId }}】</div>
         </button>
       </div>
+    </div>
+
+    <div class="legend legend-vertical">
+      <div><span class="chip empty"></span> 空位</div>
+      <div><span class="chip occupied"></span> 已佔用</div>
+      <div><span class="chip chosen"></span> 請選擇</div>
     </div>
   </div>
 </template>

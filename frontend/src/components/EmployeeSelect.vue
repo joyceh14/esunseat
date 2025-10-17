@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({
-  employees: { type: Array, default: () => [] }, // [{empId, name, email}]
-  modelValue: { type: String, default: "" }      // 綁定選中的 empId
+  employees: { type: Array, default: () => [] },
+  modelValue: { type: String, default: "" }
 });
 const emit = defineEmits(["update:modelValue"]);
 const onChange = (e) => emit("update:modelValue", e.target.value);

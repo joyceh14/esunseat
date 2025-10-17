@@ -13,7 +13,7 @@ const loading = ref(false);
 const error = ref("");
 const info = ref("");
 
-// 載入座位
+// Load Seats
 const loadSeats = async () => {
   loading.value = true; error.value = "";
   try { seats.value = await fetchSeats(); }
@@ -21,7 +21,7 @@ const loadSeats = async () => {
   finally { loading.value = false; }
 };
 
-// 載入員工
+// Load Employees
 const loadEmployees = async () => {
   try { employees.value = await fetchEmployees(); }
   catch (e) { error.value = e?.response?.data?.message || e.message || "載入員工失敗"; }
@@ -33,7 +33,7 @@ onMounted(async () => {
 
 const onSelectSeat = (s) => { selected.value = s; info.value = ""; };
 
-// 指派
+// Assign Seat
 const doAssign = async () => {
   if (!selected.value) { info.value = "請先在座位圖選一個座位"; return; }
   if (!selectedEmpId.value) { info.value = "請先從下拉選單選員工"; return; }
@@ -54,7 +54,7 @@ const doAssign = async () => {
   }
 };
 
-// 釋放（清除佔用 → 空位）
+// Release Seat (Clean occupied to be empty seat) 
 const doRelease = async () => {
   if (!selected.value) { info.value = "請先選一個座位"; return; }
   if (!selected.value.empId) { info.value = "此座位本來就是空位"; return; }

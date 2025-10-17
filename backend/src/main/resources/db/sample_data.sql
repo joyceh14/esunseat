@@ -4,7 +4,8 @@ INSERT INTO employee (emp_id, name, email) VALUES
 ('12006', 'Mike Wang', 'mwang@esun.com'),
 ('16142', 'Henry Lee', 'hlee@esun.com'),
 ('16722', 'Jenny Pan', 'jpan@esun.com'),
-('17092', 'Amy Lin', 'alin@esun.com');
+('17092', 'Amy Lin', 'alin@esun.com') 
+// 
 
 -- Seat data 
 INSERT INTO seating_chart (floor_seat_seq, floor_no, seat_no, emp_id) VALUES
@@ -23,4 +24,5 @@ INSERT INTO seating_chart (floor_seat_seq, floor_no, seat_no, emp_id) VALUES
 (13, 4, 1, NULL),
 (14, 4, 2, NULL),
 (15, 4, 3, NULL),
-(16, 4, 4, NULL);
+(16, 4, 4, NULL) 
+// 

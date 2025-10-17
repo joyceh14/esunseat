@@ -1,7 +1,8 @@
-DROP PROCEDURE IF EXISTS AssignSeat //
-DROP PROCEDURE IF EXISTS ReleaseSeat //
-DROP PROCEDURE IF EXISTS MoveSeat //
+DROP PROCEDURE IF EXISTS AssignSeat // 
+DROP PROCEDURE IF EXISTS ReleaseSeat // 
+DROP PROCEDURE IF EXISTS MoveSeat // 
 
+/* Assign Seat */
 CREATE PROCEDURE AssignSeat(
   IN p_emp_id VARCHAR(5),
   IN p_floor_no INT,
@@ -32,8 +33,9 @@ BEGIN
   -- Update seat assignment
   UPDATE seating_chart SET emp_id = p_emp_id WHERE floor_seat_seq = v_seat_seq;
   UPDATE employee SET floor_seat_seq = v_seat_seq WHERE emp_id = p_emp_id;
-END //
+END // 
 
+/* Release Seat */
 CREATE PROCEDURE ReleaseSeat(IN p_seq INT)
 BEGIN
   -- Clear employee's seat reference
@@ -44,8 +46,9 @@ BEGIN
 
   -- Mark seat as unassigned
   UPDATE seating_chart SET emp_id = NULL WHERE floor_seat_seq = p_seq;
-END //
+END // 
 
+/* Move Seat */
 CREATE PROCEDURE MoveSeat(
   IN p_emp_id   VARCHAR(5),
   IN p_to_floor INT,
@@ -98,6 +101,4 @@ BEGIN
   FROM seating_chart sc
   LEFT JOIN employee e ON sc.emp_id = e.emp_id
   WHERE sc.floor_seat_seq = v_new_seq;
-END //
-
-
+END // 
