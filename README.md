@@ -35,13 +35,13 @@ CREATE DATABASE seatdb DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 cd backend/src/main/resources/db
 
 # Import database table structure
-mysql -u root -p esunseat < schema.sql
+mysql -u root -p seatdb < schema.sql
 
 # Import stored procedures (if any)
-mysql -u root -p esunseat < seat_procs.sql
+mysql -u root -p seatdb < seat_procs.sql
 
 # Import sample data (optional)
-mysql -u root -p esunseat < sample_data.sql
+mysql -u root -p seatdb < sample_data.sql
 ```
 
 ## Step 3. Configure Environment Variables
@@ -97,4 +97,4 @@ Default frontend address: http://localhost:5173
 
 ## Step 6. Access the Application 
 Open your browser and go to: http://localhost:5173 
-You can now start using the EsunSeat system.
+You can now start using the Seat system.
